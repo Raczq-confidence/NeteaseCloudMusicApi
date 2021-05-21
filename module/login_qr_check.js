@@ -21,7 +21,7 @@ module.exports = async (query, request) => {
         ...result.body,
         cookie: result.cookie.join(';').replace(/ HTTPOnly/g,''),
       },
-      cookie: result.cookie.join(';').replace(/ HTTPOnly/g,''),
+      cookie: result.cookie.join(';').replace(/ HTTPOnly/g,'').split(';;'),
     }
     return result
   } catch (error) {
