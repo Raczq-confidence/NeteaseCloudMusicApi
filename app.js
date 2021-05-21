@@ -78,11 +78,9 @@ fs.readdirSync(path.join(__dirname, 'module'))
     let question = require(path.join(__dirname, 'module', file))
 
     app.use(route, (req, res) => {
-      ;[req.query, req.body].forEach((item) => {
-        if (typeof item.cookie === 'string') {
-          item.cookie = cookieToJson(decodeURIComponent(item.cookie))
-        }
-      })
+      if (typeof req.query.cookie === 'string') {
+        req.query.cookie = cookieToJson(req.query.cookie)
+      }
       let query = Object.assign(
         {},
         { cookie: req.cookies },

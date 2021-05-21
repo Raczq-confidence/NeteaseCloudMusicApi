@@ -19,9 +19,9 @@ module.exports = async (query, request) => {
       status: 200,
       body: {
         ...result.body,
-        cookie: result.cookie.join(';'),
+        cookie: result.cookie.join(';').replace(/ HTTPOnly/g,''),
       },
-      cookie: result.cookie,
+      cookie: result.cookie.join(';').replace(/ HTTPOnly/g,''),
     }
     return result
   } catch (error) {
